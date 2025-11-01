@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>Docker compose example</title>
+  </head>
+  <style>
+    #container {
+      margin: 40px auto;
+      width: 80%;
+    }
+    hr {
+      width: 400px;
+      margin-left: 0;
+    }
+    h3 {
+      display: inline-block;
+    }
+    #dynamic {
+      color: red;
+    }
+  </style>
+  <script>
+    (async function init() {
+      const container = document.getElementById("container");
+      const response = await fetch("http://localhost:3000/fetch-data", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const jsonResponse = await response.json();
+      document.getElementById("dynamic").textContent = jsonResponse.data;
+    })();
+  </script>
+  <body>
+    <div id="container">
+      <h1>Docker Compose Example</h1>
+      <span>I am dynamic: </span>
+      <h3 id="dynamic"></h3>
+      <hr />
+    </div>
+  </body>
+</html>
